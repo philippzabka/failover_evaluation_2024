@@ -1,7 +1,6 @@
 import math
 import glob
 import fnss
-from arborescences import *
 from routing import *
 
 # global variables

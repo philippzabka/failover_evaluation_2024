@@ -1,25 +1,9 @@
 import sys
 import networkx as nx
-import matplotlib.pyplot as plt
 import random
 from heapq import heappush, heappop
 
 swappy = []
-
-
-# set up associated data structures for k arborescences
-# an edge that does not belong to any arborescences has its
-# 'arb' attribute set to -1
-def init_k_graph(k, n):
-    g = nx.random_regular_graph(k, n).to_directed()
-    while nx.edge_connectivity(g) < k:
-        g = nx.random_regular_graph(k, n).to_directed()
-    for (u, v) in g.edges():
-        g[u][v]['arb'] = -1
-    g.graph['k'] = k
-    g.graph['root'] = 0  # set root node to be 0
-    return g
-
 
 # reset the arb attribute for all edges to -1, i.e., no arborescence assigned yet
 def reset_arb_attribute(g):
@@ -160,21 +144,6 @@ def nodes_index(g, i):
     return set([u for (u, v, d) in g.edges(data=True) if d['arb'] == i or u == g.graph['root']])
 
 
-# return the outgoing edges for node v with arborescence i
-def outgoing_edges_index(g, v, i):
-    return [u for u in g[v] if g[v][u]['arb'] == i]
-
-
-# return true iff there is exactly one outgoing edge from node for each
-# arborescence
-def is_complete_node(g, node):
-    for i in range(g.graph['k']):
-        if len(outgoing_edges_index(g, node, i)) != 1:
-            return False
-    else:
-        return True
-
-
 # return length of shortest path between u and v on the indexth arborescence of g
 def shortest_path_length(g, index, u, v):
     arbs = get_arborescence_dict(g)
@@ -189,62 +158,6 @@ def connected_component_nodes_with_d_after_failures(g, failures, d):
     for i in range(len(Gcc)):
         if d in Gcc[i]:
             return list(Gcc[i])
-
-
-# save png of arborescence embeddings
-def drawArborescences(g, pngname="results/weighted_graph.png"):
-    plt.clf()
-    k = g.graph['k']
-    edge_labels = {i: {} for i in range(k)}
-    edge_labels[-1] = {}
-    for e in g.edges():
-        arb = g[e[0]][e[1]]['arb']
-        edge_labels[arb][(e[0], e[1])] = ""
-    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'pink', 'olive',
-              'brown', 'orange', 'darkgreen', 'navy', 'purple']
-    if 'pos' not in g.graph:
-        g.graph['pos'] = nx.spring_layout(g)
-    pos = g.graph['pos']
-    nx.draw_networkx_labels(g, pos)
-    nodes = list(g.nodes)
-    node_colors = {v: 'gray' for v in nodes}
-    for node in nodes:
-        if is_complete_node(g, node):
-            node_colors[node] = 'black'
-    color_list = [node_colors[v] for v in nodes]
-    nx.draw_networkx_nodes(g, pos, nodelist=nodes, alpha=0.6,
-                           node_color=color_list, node_size=2)
-    for j in range(k):
-        edge_j = [(u, v) for (u, v, d) in g.edges(data=True) if d['arb'] == j]
-        nx.draw_networkx_labels(g, pos)
-        nx.draw_networkx_edges(g, pos, edgelist=edge_j,
-                               width=1, alpha=0.5, edge_color=colors[j])
-    plt.axis('off')
-    plt.savefig(pngname)  # save as png
-    plt.close()
-    for j in range(k):
-        edge_j = [(u, v) for (u, v, d) in g.edges(data=True) if d['arb'] == j]
-        nx.draw_networkx_labels(g, pos)
-        nx.draw_networkx_edges(g, pos, edgelist=edge_j, width=1,
-                               alpha=0.5, edge_color=colors[j])  # , arrowsize=20)
-        plt.savefig(pngname + str(j) + '.png')  # save as png
-        plt.close()
-
-
-# return best edges to swap for stretch in g
-def drawGraphWithLabels(g, pngname):
-    plt.clf()
-    if 'pos' not in g.graph:
-        g.graph['pos'] = nx.spring_layout(g)
-    pos = g.graph['pos']
-    nx.draw_networkx_labels(g, pos)
-    nx.draw_networkx_edges(g, pos, edgelist=list(g.edges()), style='solid',
-                           width=2)
-    nx.draw_networkx_nodes(g, pos, nodelist=list(g.nodes()), node_color='blue', alpha=1)
-    nx.draw_networkx_nodes(g, pos, nodelist=[g.graph['root']], node_color='yellow', alpha=1)
-    plt.axis('off')
-    plt.savefig(pngname)  # save as png
-    plt.close()
 
 
 # return the edge connectivity of g between s and t
@@ -364,10 +277,6 @@ class Network:
         self.g[u2][v2]['arb'] = i1
         self.build_arb(i1)
         self.build_arb(i2)
-
-    # return true iff graph with arborescence index i is a DAG
-    def acyclic_index(self, i):
-        return nx.is_directed_acyclic_graph(self.arbs[i])
 
     # return true if graoh of given index is really an arborescence
     def is_arb(self, index):

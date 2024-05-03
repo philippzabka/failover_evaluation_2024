@@ -13,7 +13,6 @@ algos = {
     'SquareOne': [PrepareSQ1SD, RouteSQ1]
 }
 
-
 def one_experiment(g, seed, out, algo, f_list, first_string):
     # If failes > edges
     if f_list[0] >= len(g.edges()):
@@ -35,11 +34,9 @@ def one_experiment(g, seed, out, algo, f_list, first_string):
     random.seed(seed)
     if DEBUG:
         print('experiment for ', algo[0])
-    if routing_algo == RouteDetCircSkip or routing_algo == KeepForwardingRouting:
-        stat = Statistic(routing_algo, str(routing_algo), g.to_undirected())
-    else:
-        g = g.to_undirected()
-        stat = Statistic(routing_algo, str(routing_algo))
+
+    g = g.to_undirected()
+    stat = Statistic(routing_algo, str(routing_algo))
 
     precomputation = None
     pt = 0
@@ -72,7 +69,6 @@ def one_experiment(g, seed, out, algo, f_list, first_string):
         if routing_algo == RouteTwoResilient or routing_algo == RouteSQ1:
             pt = 0
         rt = 0
-        targeted = False
 
         # If failes > edges with CLUSTER attack
         if f_num >= len(g.edges()):
@@ -84,7 +80,7 @@ def one_experiment(g, seed, out, algo, f_list, first_string):
                 print(e)
             return [0]
 
-        graph, failures, fails, dist = preprocess_simulate_graph(g, f_num, targeted, dest)
+        graph, failures, fails, dist = preprocess_simulate_graph(g, f_num, False, dest)
 
         for s in nodes[:sample_size]:
             # TwoResilient needs precomputation for every source & destination pair

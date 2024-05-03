@@ -1,0 +1,17 @@
+fnss==0.9.1
+matplotlib==3.6.2
+networkx==3.0
+numpy==1.24.2
+pandas==1.5.3
+pygraphviz==1.10
+scipy==1.11.3
+
+# Create a virtual environment named 'env' with Python 3.9
+# python3.9 -m venv env
+
+# Activate the virtual environment
+# source env/bin/activate  # On Unix or MacOS
+# env\Scripts\activate  # On Windows
+
+# Now you can install the packages from requirements.txt
+# pip install -r requirements.txt

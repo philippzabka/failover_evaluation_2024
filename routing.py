@@ -1,6 +1,5 @@
 from networkx.algorithms.connectivity import build_auxiliary_edge_connectivity
 from networkx.algorithms.flow import build_residual_network
-from extra_links import *
 from arborescences import *
 import numpy as np
 import networkx as nx
@@ -19,15 +18,6 @@ name = "experiment-routing"
 def set_routing_params(params):
     global seed, n, rep, k, samplesize, name, f_num
     [n, rep, k, samplesize, f_num, seed, name] = params
-
-
-# select next arborescence to bounce
-def Bounce(s, d, T, cur):
-    for i in range(len(T)):
-        if (d, s) in T[i].edges():
-            return i
-    else:
-        return (cur + 1) % len(T)
 
 
 # build data structure for square one algorithm only with s-d pair
@@ -75,44 +65,6 @@ def RouteSQ1(s, d, fails, T):
             hops += 1
         if hops > 3 * n or switches > k * n:
             print("cycle square one")
-            return (True, hops, switches, detour_edges)
-    return (False, hops, switches, detour_edges)
-
-
-# Route with randomization as described by Chiesa et al.
-# source s
-# destination d
-# link failure set fails
-# arborescence decomposition T
-P = 0.5358  # bounce probability
-def RoutePR(s, d, fails, T):
-    detour_edges = []
-    curT = 0
-    hops = 0
-    switches = 0
-    n = len(T[0].nodes())
-    while (s != d):
-        nxt = list(T[curT].neighbors(s))
-        if len(nxt) != 1:
-            print("Bug: too many or to few neighbours")
-        nxt = nxt[0]
-        if (nxt, s) in fails or (s, nxt) in fails:
-            x = random.random()
-            if x <= P:
-                curT = Bounce(s, nxt, T, curT)
-            else:
-                newT = random.randint(0, len(T) - 2)
-                if newT >= curT:
-                    newT = (newT + 1) % len(T)
-                curT = newT
-            switches += 1
-        else:
-            if switches > 0:
-                detour_edges.append((s, nxt))
-            s = nxt
-            hops += 1
-        if hops > 3 * n or switches > k * n:
-            print("cycle PR")
             return (True, hops, switches, detour_edges)
     return (False, hops, switches, detour_edges)
 
@@ -246,9 +198,6 @@ class Statistic:
             self.lastsuc = True
         return (fail, hops)
 
-    def max_stretch(self):
-        return max(self.stretch)
-
     # compute statistics when no more data will be added
     def finalize(self):
         self.lat = -1
@@ -265,8 +214,3 @@ class Statistic:
             self.lat = np.mean(self.hops)
         return max(self.stretch)
 
-    def max_load(self):
-        return max(self.load.values())
-
-    def load_distribution(self):
-        return [x * 1.0 / self.size ** 2 for x in np.bincount(self.load.values())]
