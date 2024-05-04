@@ -1,2 +1,1 @@
-# failover_evaluation_2024
-Complementary repository for master thesis: Algorithm Engineering and Empirical Evaluation for Fast Rerouting with Multiple Failures
+Contains erdos-renyi graphs, which will be automatically generated once the experiments are started.
