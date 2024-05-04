@@ -1,7 +1,7 @@
 import time
 from copy import deepcopy
 from datetime import datetime
-from objective_function_experiments import *
+from graph_utils import *
 from FeigenbaumAlg import DAG, FeigenbaumAlg
 from TwoResilientAlg import PreComputeTwoResilient, RouteTwoResilient
 
@@ -417,7 +417,7 @@ def experiments(switch="all", seed=0, rep=100):
         run_zoo(out=out, seed=seed, rep=rep, min_connectivity=min_connectivity)
         out.close()
 
-    if switch in ["AS"]:
+    if switch in ["as"]:
         out_str = ("results_as/" + name + "AS-seed-" + str(seed) + "-" + str(rep) + "-" + str(sample_size) +
                    "-" + str(f_num) + "-" + attack + "-" + formatted_date)
         out = start_file(out_str)
@@ -499,4 +499,4 @@ if __name__ == "__main__":
     print("start time", time.asctime(time.localtime(start)))
     print("end time", time.asctime(time.localtime(end)))
 
-    # example call: python zabka2023_experiments.py zoo 45 10 100 20 20 RANDOM False
+    # example call: python zabka2024_experiments.py zoo 45 10 100 20 20 RANDOM False
