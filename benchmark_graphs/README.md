@@ -1,1 +1,1 @@
-For some experiments topologies from [Rocketfuel]{https://research.cs.washington.edu/networking/rocketfuel/} and the [Internet topology zoo]{http://www.topology-zoo.org/} networks need to downloaded and copied into `/zoo` and `rocketfuel` directories.
+This directory contains the networks needed for the experiments.
