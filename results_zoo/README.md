@@ -1,1 +1,1 @@
-This directory will contains the output files of the zoo experiments.
+This directory contain the output files of the zoo experiments.
