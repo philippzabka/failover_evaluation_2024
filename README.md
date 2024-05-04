@@ -76,3 +76,72 @@ python zabka2024_experiments.py ring 45 10 100 20 20 RANDOM False
 Some of the source code provided in this repository builds upon source code originating from [Fast-Failover](https://gitlab.cs.univie.ac.at/ct-papers/fast-failover/-/tree/master). 
 
 December 2020: Paula-Elena Gheorghe added an implementation of the algorithm described in https://cpsc.yale.edu/sites/default/files/files/tr1454.pdf, see FeigenbaumAlgo.py
+
+If you use this the code from TwoResilient, Feigenbaum or SquareOne, please cite the corresponding paper(s).
+
+#### TwoResilient
+```
+@inproceedings{DBLP:conf/spaa/DaiF023,
+  author       = {Wenkai Dai and
+                  Klaus{-}Tycho Foerster and
+                  Stefan Schmid},
+  editor       = {Kunal Agrawal and
+                  Julian Shun},
+  title        = {A Tight Characterization of Fast Failover Routing: Resiliency to Two
+                  Link Failures is Possible},
+  booktitle    = {Proceedings of the 35th {ACM} Symposium on Parallelism in Algorithms
+                  and Architectures, {SPAA} 2023, Orlando, FL, USA, June 17-19, 2023},
+  pages        = {153--163},
+  publisher    = {{ACM}},
+  year         = {2023},
+  url          = {https://doi.org/10.1145/3558481.3591080},
+  doi          = {10.1145/3558481.3591080},
+  timestamp    = {Thu, 15 Jun 2023 21:57:01 +0200},
+  biburl       = {https://dblp.org/rec/conf/spaa/DaiF023.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
+#### SquareOne
+```
+@inproceedings{DBLP:conf/infocom/FoersterP0T19,
+  author       = {Klaus{-}Tycho Foerster and
+                  Yvonne{-}Anne Pignolet and
+                  Stefan Schmid and
+                  Gilles Tr{\'{e}}dan},
+  title        = {{CASA:} Congestion and Stretch Aware Static Fast Rerouting},
+  booktitle    = {2019 {IEEE} Conference on Computer Communications, {INFOCOM} 2019,
+                  Paris, France, April 29 - May 2, 2019},
+  pages        = {469--477},
+  publisher    = {{IEEE}},
+  year         = {2019},
+  url          = {https://doi.org/10.1109/INFOCOM.2019.8737438},
+  doi          = {10.1109/INFOCOM.2019.8737438},
+  timestamp    = {Wed, 17 Mar 2021 13:51:52 +0100},
+  biburl       = {https://dblp.org/rec/conf/infocom/FoersterP0T19.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
+#### Feigenbaum
+```
+@article{DBLP:journals/corr/abs-1207-3732,
+  author       = {Joan Feigenbaum and
+                  Brighten Godfrey and
+                  Aurojit Panda and
+                  Michael Schapira and
+                  Scott Shenker and
+                  Ankit Singla},
+  title        = {On the Resilience of Routing Tables},
+  journal      = {CoRR},
+  volume       = {abs/1207.3732},
+  year         = {2012},
+  url          = {http://arxiv.org/abs/1207.3732},
+  eprinttype    = {arXiv},
+  eprint       = {1207.3732},
+  timestamp    = {Mon, 13 Aug 2018 16:48:07 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1207-3732.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
