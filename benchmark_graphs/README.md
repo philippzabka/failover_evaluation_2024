@@ -1,2 +1,1 @@
-# failover_evaluation_2024
-Complementary repository for master thesis: Algorithm Engineering and Empirical Evaluation for Fast Rerouting with Multiple Failures
+For some experiments topologies from [Rocketfuel]{https://research.cs.washington.edu/networking/rocketfuel/} and the [Internet topology zoo]{http://www.topology-zoo.org/} networks need to downloaded and copied into `/zoo` and `rocketfuel` directories.
