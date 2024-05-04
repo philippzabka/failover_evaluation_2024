@@ -1,2 +1,1 @@
-# failover_evaluation_2024
-Complementary repository for master thesis: Algorithm Engineering and Empirical Evaluation for Fast Rerouting with Multiple Failures
+Download [Rocketfuel](https://research.cs.washington.edu/networking/rocketfuel/) networks and put them into this directory.
