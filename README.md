@@ -10,7 +10,7 @@ This repository contains the following scripts:
 3. FeigenbaumAlg.py: The Feigenbaum algorithm 
 4. graph_utils.py: Helper functions for reading, writing and creating graphs
 5. routing.py: Routing algorithms, simulation and statistic framework (also contains the SquareOne algorithm)
-6. arborescences.py: Arborescence decomposition and helper algorithms
+7. arborescences.py: Arborescence decomposition and helper algorithms
 
 ## Run experiments
 
@@ -27,12 +27,13 @@ python zabka2024_experiments.py zoo 45 100 100 20 20 RANDOM False
 ```
 Short description of arguments:
 1. zoo: Switch -> decides which experiments to run
-2. 45: Seed -> Random seed, used for graph generation
+2. 45: Seed -> Random seed, used for graph generation (see [Randomness](https://networkx.org/documentation/stable/reference/randomness.html))
 3. 100: Repetitions -> Number of experiments
 4. 100: Number of nodes -> Set number of nodes for graph generation
 5. 20: Sample size -> Number of sources to route a packet to destination
 6. 20: Number of failed link -> Set number of failed links for the experiment
-7. False: Short -> If True, only small zoo graphs < 25 nodes are run 
+7. RANDOM: Link failure model -> Set the link failure model i.e. RANDOM or CLUSTER
+8. False: Short -> If True, only small zoo graphs < 25 nodes are run 
 
 Refer to `zabka2024_experiments.py` for more information on input arguments.
 
