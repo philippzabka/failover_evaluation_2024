@@ -23,9 +23,18 @@ Results will be generated in the `results_zoo` directory.
 
 Example call:
 ```shell
-python zabka2024_experiments.py zoo 45 10 100 20 20 RANDOM False
+python zabka2024_experiments.py zoo 45 100 100 20 20 RANDOM False
 ```
-Refer to `zabka2024_experiments.py` for a description of the input parameters.
+Short description of arguments:
+1. zoo: Switch -> decides which experiments to run
+2. 45: Seed -> Random seed, used for graph generation
+3. 100: Repetitions -> Number of experiments
+4. 100: Number of nodes -> Set number of nodes for graph generation
+5. 20: Sample size -> Number of sources to route a packet to destination
+6. 20: Number of failed link -> Set number of failed links for the experiment
+7. False: Short -> If True, only small zoo graphs < 25 nodes are run 
+
+Refer to `zabka2024_experiments.py` for more information on input arguments.
 
 ### Rocketfuel
 
@@ -35,7 +44,7 @@ Results will be generated in the `results_as` directory.
 Example call:
 
 ```shell
-python zabka2024_experiments.py as 45 10 100 20 20 RANDOM False
+python zabka2024_experiments.py as 45 100 100 20 20 RANDOM False
 ```
 
 ### Erdős–Rényi
@@ -46,7 +55,7 @@ Results will be generated in the `results_erdos_renyi` directory.
 Example call:
 
 ```shell
-python zabka2024_experiments.py erdos-renyi 45 10 100 20 20 RANDOM False
+python zabka2024_experiments.py erdos-renyi 45 100 100 20 20 RANDOM False
 ```
 
 ### Regular
@@ -57,7 +66,7 @@ Results will be generated in the `results_regular` directory.
 Example call:
 
 ```shell
-python zabka2024_experiments.py regular 45 10 100 20 20 RANDOM False
+python zabka2024_experiments.py regular 45 100 100 20 20 RANDOM False
 ```
 
 ### Ring
@@ -68,7 +77,7 @@ Results will be generated in the `results_ring` directory.
 Example call:
 
 ```shell
-python zabka2024_experiments.py ring 45 10 100 20 20 RANDOM False
+python zabka2024_experiments.py ring 45 100 100 20 20 RANDOM False
 ```
 
 ## Addendum
